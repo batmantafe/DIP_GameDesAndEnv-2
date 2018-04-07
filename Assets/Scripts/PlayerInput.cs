@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 public class PlayerInput : MonoBehaviour
 {
 
@@ -22,6 +24,11 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            SceneManager.LoadScene("Game");
         }
     }
 }
