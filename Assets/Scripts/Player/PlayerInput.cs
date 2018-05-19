@@ -35,6 +35,8 @@ public class PlayerInput : MonoBehaviour
 
     void StartConditions()
     {
+        Cursor.visible = false;
+
         playerHasFirstKey = false;
     }
 

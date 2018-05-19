@@ -11,13 +11,15 @@ public class Elevator : MonoBehaviour
 
     public float elevatorSpeed;
 
-    private bool elevatorOn;
-    private bool elevatorDone;
+    public bool elevatorOn;
+    public bool elevatorDone;
+    public bool elevatorReady;
 
     void Start()
     {
         elevatorOn = false;
         elevatorDone = false;
+        elevatorReady = false;
 
         elevatorSpeed = .5f;
     }
@@ -34,18 +36,22 @@ public class Elevator : MonoBehaviour
             elevatorDone = true;
             elevatorOn = false;
         }
+
+        if (elevatorReady == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            elevatorOn = true;
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        // IF Player at Elevator, AND Elevator not already moving, AND Key deactivated, THEN Elevator ready to work
         if (other.gameObject.name == "Player" &&
             elevatorOn == false &&
             elevatorDone == false &&
             key.activeSelf == false)
         {
-            //other.gameObject.transform.parent = platform.transform;
-
-            elevatorOn = true;
+            elevatorReady = true;
         }
     }
 }
