@@ -11,13 +11,13 @@ public class Lever : MonoBehaviour {
 
     public bool doorOn;
     public bool doorDone;
-    public bool playerAtDoor;
+    public bool playerAtLever;
 
     void Start()
     {
         doorOn = false;
         doorDone = false;
-        playerAtDoor = false;
+        playerAtLever = false;
 
         doorSpeed = .5f;
     }
@@ -28,8 +28,6 @@ public class Lever : MonoBehaviour {
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorTarget.position, doorSpeed * Time.deltaTime);
 
-            transform.
-
             transform.Rotate(new Vector3 (0, -30, 0) * (doorSpeed * Time.deltaTime));
         }
 
@@ -39,22 +37,31 @@ public class Lever : MonoBehaviour {
             doorOn = false;
         }
 
-        if (playerAtDoor == true && Input.GetKeyDown(KeyCode.Space))
+        if (playerAtLever == true && Input.GetKeyDown(KeyCode.Space))
         {
             doorOn = true;
         }
 
-        Debug.Log(door.transform.position);
+        //Debug.Log(door.transform.position);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // IF Player at Elevator, AND Elevator not already moving, AND Key deactivated, THEN Elevator ready to work
+        // IF Player at Lever, AND Door not already moving, THEN Door ready to work
         if (other.gameObject.name == "Player" &&
             doorOn == false &&
             doorDone == false)
         {
-            playerAtDoor = true;
+            playerAtLever = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        // IF Player leaves Lever
+        if (other.gameObject.name == "Player")
+        {
+            playerAtLever = false;
         }
     }
 }
