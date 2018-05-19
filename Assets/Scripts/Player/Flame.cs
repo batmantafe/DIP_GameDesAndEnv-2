@@ -10,6 +10,9 @@ public class Flame : MonoBehaviour
 
     public float fuelMax, fuelCurrent, burnRate;
 
+    public Color flameColourMax, flameColour;
+    public Renderer rend;
+
     // Use this for initialization
     void Start()
     {
@@ -28,10 +31,16 @@ public class Flame : MonoBehaviour
 
         fuelMax = 100f;
         fuelCurrent = fuelMax;
-        burnRate = 30f;
+        burnRate = 150f;
 
         flameStartRange = flameLight.range;
         flameStartIntensity = flameLight.intensity;
+
+        rend = GetComponent<Renderer>();
+        flameColourMax = rend.material.color;
+        flameColour = flameColourMax;
+
+        Debug.Log(flameColour);
     }
 
     void BurnDown()
@@ -44,6 +53,11 @@ public class Flame : MonoBehaviour
         {
             flameLight.range = flameLight.range - (flameStartRange / burnRate * Time.deltaTime);
             flameLight.intensity = flameLight.intensity - (flameStartIntensity / burnRate * Time.deltaTime);
+
+            // Faking Colour Lerp
+            flameColour.r = flameColour.r - (flameColourMax.r / burnRate * Time.deltaTime);
+            flameColour.g = flameColour.g - (flameColourMax.g / (burnRate / 2f) * Time.deltaTime);
+            rend.material.color = flameColour;
         }
 
         if (fuelCurrent <= 0f)
