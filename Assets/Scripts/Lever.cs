@@ -27,6 +27,10 @@ public class Lever : MonoBehaviour {
         if (doorOn == true)
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorTarget.position, doorSpeed * Time.deltaTime);
+
+            transform.
+
+            transform.Rotate(new Vector3 (0, -30, 0) * (doorSpeed * Time.deltaTime));
         }
 
         if (door.transform.position == doorTarget.position)
