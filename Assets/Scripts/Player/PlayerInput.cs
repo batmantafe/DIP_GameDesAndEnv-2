@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
     public bool playerHasFirstKey;
+
+    public Text playerMessage;
 
     // Use this for initialization
     void Start()
@@ -47,6 +50,19 @@ public class PlayerInput : MonoBehaviour
             other.gameObject.SetActive(false);
 
             playerHasFirstKey = true;
+        }
+
+        if (other.gameObject.CompareTag("First Button"))
+        {
+            playerMessage.text = "You can Press SPACE to use Buttons and Levers.";
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("First Button"))
+        {
+            playerMessage.text = "";
         }
     }
 }
