@@ -8,7 +8,7 @@ public class Torches : MonoBehaviour
 
     public float torchStartRange, torchStartIntensity;
 
-    public float fuelMax, fuelCurrent, burnRate;
+    public float fuelMax, fuelCurrent, burnRate, greenFuel;
 
     public Color torchColourMax, torchColour;
     public Renderer rend;
@@ -31,7 +31,7 @@ public class Torches : MonoBehaviour
 
         fuelMax = 100f;
         fuelCurrent = fuelMax;
-        burnRate = 300f; // in seconds
+        burnRate = 600f;
 
         torchStartRange = torchLight.range;
         torchStartIntensity = torchLight.intensity;
@@ -40,29 +40,43 @@ public class Torches : MonoBehaviour
         torchColourMax = rend.material.color;
         torchColour = torchColourMax;
 
-        //Debug.Log(torchColour);
+        greenFuel = torchColourMax.g * 100;
     }
 
     void BurnDown()
     {
         fuelCurrent = fuelCurrent - (fuelMax / burnRate * Time.deltaTime);
+        greenFuel = greenFuel - (fuelMax / (burnRate / 2f) * Time.deltaTime);
 
-        //Debug.Log(fuelCurrent);
+        torchLight.range = (fuelCurrent / fuelMax) * torchStartRange;
+        torchLight.intensity = (fuelCurrent / fuelMax) * torchStartIntensity;
 
-        if (fuelCurrent > 0f)
+        torchColour.r = (fuelCurrent / fuelMax) * torchColourMax.r;
+        torchColour.g = (greenFuel / fuelMax) * torchColourMax.g;
+        rend.material.color = torchColour;
+
+        //Debug.Log("Flame: " + rend.material.color + " & FuelCurrent: " + fuelCurrent);
+
+        // Debugging Fuel
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
-            torchLight.range = torchLight.range - (torchStartRange / burnRate * Time.deltaTime);
-            torchLight.intensity = torchLight.intensity - (torchStartIntensity / burnRate * Time.deltaTime);
+            fuelCurrent = fuelMax;
+            greenFuel = torchColourMax.g * 100f;
+        }*/
 
-            // Faking Colour Lerp
-            torchColour.r = torchColour.r - (torchColourMax.r / burnRate * Time.deltaTime);
-            torchColour.g = torchColour.g - (torchColourMax.g / (burnRate / 2f) * Time.deltaTime);
-            rend.material.color = torchColour;
+        if (fuelCurrent > fuelMax)
+        {
+            fuelCurrent = fuelMax;
         }
 
         if (fuelCurrent <= 0f)
         {
             fuelCurrent = 0f;
+        }
+
+        if (greenFuel <= 0f)
+        {
+            greenFuel = 0f;
         }
     }
 }
