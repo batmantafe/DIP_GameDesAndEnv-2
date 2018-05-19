@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {
-    //
+    public GameObject key;
 
     public GameObject platform;
     public Transform platformTarget;
@@ -18,6 +18,8 @@ public class Elevator : MonoBehaviour
     {
         elevatorOn = false;
         elevatorDone = false;
+
+        elevatorSpeed = .5f;
     }
 
     void Update()
@@ -38,8 +40,11 @@ public class Elevator : MonoBehaviour
     {
         if (other.gameObject.name == "Player" &&
             elevatorOn == false &&
-            elevatorDone == false)
+            elevatorDone == false &&
+            key.activeSelf == false)
         {
+            //other.gameObject.transform.parent = platform.transform;
+
             elevatorOn = true;
         }
     }
