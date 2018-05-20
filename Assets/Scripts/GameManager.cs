@@ -8,11 +8,15 @@ public class GameManager : MonoBehaviour
 {
     public bool playerWon, playerLost;
 
+    public int playerStatus;
+
     // Use this for initialization
     void Start()
     {
         playerWon = false;
         playerLost = false;
+
+        playerStatus = 0;
     }
 
     // Update is called once per frame
@@ -27,14 +31,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Player Won!");
 
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Menu");
         }
 
         if (playerLost == true)
         {
             Debug.Log("Player Lost!");
 
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Menu");
         }
     }
 }

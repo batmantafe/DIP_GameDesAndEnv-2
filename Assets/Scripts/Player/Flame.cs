@@ -27,11 +27,11 @@ public class Flame : MonoBehaviour
         BurnDown();
 
         // For Debugging/Playtesting only
-        if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
             fuelCurrent = fuelMax;
             greenFuel = flameColourMax.g * 100f;
-        }
+        }*/
     }
 
     void StartConditions()

@@ -31,19 +31,21 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            //Application.Quit();
+
+            SceneManager.LoadScene("Menu");
         }
 
-        if (Input.GetKeyDown(KeyCode.F1))
+        /*if (Input.GetKeyDown(KeyCode.F1))
         {
             SceneManager.LoadScene("Game");
-        }
+        }*/
 
         // For Debugging/Playtesting Only
-        if (Input.GetKeyDown(KeyCode.F2))
+        /*if (Input.GetKeyDown(KeyCode.F2))
         {
             transform.position = new Vector3(-35f, -35f, -18f);
-        }
+        }*/
     }
 
     void StartConditions()
@@ -87,6 +89,11 @@ public class PlayerInput : MonoBehaviour
         if (other.gameObject.name == "Falling Floor")
         {
             gameManager.playerLost = true;
+        }
+
+        if (other.gameObject.CompareTag("The End"))
+        {
+            gameManager.playerWon = true;
         }
     }
 
