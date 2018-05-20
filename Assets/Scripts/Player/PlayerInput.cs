@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
-    public bool playerHasFirstKey;
+    public bool playerHasFirstKey, playerHasLastKey;
 
     public Text playerMessage;
 
@@ -43,6 +43,7 @@ public class PlayerInput : MonoBehaviour
         Cursor.visible = false;
 
         playerHasFirstKey = false;
+        playerHasLastKey = false;
 
         playerAtBonfire = false;
     }
@@ -66,6 +67,13 @@ public class PlayerInput : MonoBehaviour
             playerAtBonfire = true;
 
             playerMessage.text = "You can Press SPACE to refuel your Torch.";
+        }
+
+        if (other.gameObject.CompareTag("Last Key"))
+        {
+            other.gameObject.SetActive(false);
+
+            playerHasLastKey = true;
         }
     }
 

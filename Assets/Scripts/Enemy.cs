@@ -8,13 +8,17 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
 
     private NavMeshAgent nav;
+
+    public bool getPlayerBool;
 
     void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
+
+        getPlayerBool = false;
     }
 
     // Use this for initialization
@@ -26,9 +30,19 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
+        getPlayer();
+
+        if (getPlayerBool == true)
         {
-            nav.SetDestination(player.position);
+            nav.SetDestination(player.transform.position);
+        }
+    }
+
+    void getPlayer()
+    {
+        if (player.GetComponent<PlayerInput>().playerHasLastKey == true)
+        {
+            getPlayerBool = true;
         }
     }
 }
