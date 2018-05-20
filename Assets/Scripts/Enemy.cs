@@ -49,6 +49,8 @@ public class Enemy : MonoBehaviour
             activateEnemy = true;
 
             enemySphere.enabled = true;
+
+            gameObject.tag = "Enemy";
         }
 
         if (enemySphere.enabled)

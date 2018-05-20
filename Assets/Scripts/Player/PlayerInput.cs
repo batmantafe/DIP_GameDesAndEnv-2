@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
 
     public bool playerAtBonfire;
 
+    public GameManager gameManager;
+
     // Use this for initialization
     void Start()
     {
@@ -80,6 +82,11 @@ public class PlayerInput : MonoBehaviour
             other.gameObject.SetActive(false);
 
             playerHasLastKey = true;
+        }
+
+        if (other.gameObject.name == "Falling Floor")
+        {
+            gameManager.playerLost = true;
         }
     }
 
