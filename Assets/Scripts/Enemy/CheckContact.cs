@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckContact : MonoBehaviour
 {
     public GameManager gameManager;
+    public PlayerInput playerInput;
 
     // Use this for initialization
     void Start()
@@ -20,7 +21,7 @@ public class CheckContact : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.name == "Player" && playerInput.playerHasLastKey == true)
         {
             Debug.Log("Enemy touched Player");
 
