@@ -33,7 +33,11 @@ public class PlayerInput : MonoBehaviour
         {
             //Application.Quit();
 
-            SceneManager.LoadScene("Menu");
+            gameManager.playerStatus = 2;
+
+            //Debug.Log(gameManager.playerStatus);
+
+            gameManager.playerLost = true;
         }
 
         /*if (Input.GetKeyDown(KeyCode.F1))
@@ -88,11 +92,15 @@ public class PlayerInput : MonoBehaviour
 
         if (other.gameObject.name == "Falling Floor")
         {
+            gameManager.playerStatus = 3;
+
             gameManager.playerLost = true;
         }
 
         if (other.gameObject.CompareTag("The End"))
         {
+            gameManager.playerStatus = 1;
+
             gameManager.playerWon = true;
         }
     }

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public int playerStatus;
 
+    public Torches torchSample;
+
     // Use this for initialization
     void Start()
     {
@@ -17,12 +19,16 @@ public class GameManager : MonoBehaviour
         playerLost = false;
 
         playerStatus = 0;
+
+        PlayerPrefs.SetInt("Player Win/Lose", playerStatus);
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckPlayer();
+
+        //Debug.Log(playerStatus);
     }
 
     void CheckPlayer()
@@ -31,6 +37,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Player Won!");
 
+            PlayerPrefs.SetInt("Player Win/Lose", playerStatus);
+
             SceneManager.LoadScene("Menu");
         }
 
@@ -38,7 +46,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Player Lost!");
 
+            PlayerPrefs.SetInt("Player Win/Lose", playerStatus);
+
             SceneManager.LoadScene("Menu");
         }
+
+        
     }
 }

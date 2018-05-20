@@ -25,6 +25,8 @@ public class CheckContact : MonoBehaviour
         {
             Debug.Log("Enemy touched Player");
 
+            gameManager.playerStatus = 4;
+
             gameManager.playerLost = true;
         }
     }
