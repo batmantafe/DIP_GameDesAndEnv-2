@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     public Torches torchSample;
 
+    public PlayerInput playerInput;
+    public GameObject bonfireTrigger, bonfireFire;
+
     // Use this for initialization
     void Start()
     {
@@ -56,6 +59,13 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Player Win/Lose", playerStatus);
 
             SceneManager.LoadScene("Menu");
+        }
+
+        if (playerInput.playerHasLastKey == true)
+        {
+            bonfireTrigger.SetActive(false);
+
+            bonfireFire.SetActive(false);
         }
     }
 }
