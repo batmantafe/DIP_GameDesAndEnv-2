@@ -13,6 +13,8 @@ public class Flame : MonoBehaviour
     public Color flameColourMax, flameColour;
     public Renderer rend;
 
+    public GameObject playerObject;
+
     // Use this for initialization
     void Start()
     {
@@ -57,8 +59,8 @@ public class Flame : MonoBehaviour
 
         //Debug.Log("Flame: " + rend.material.color + " & FuelCurrent: " + fuelCurrent);
 
-        // Debugging Fuel
-        if (Input.GetKeyDown(KeyCode.E))
+        // Refuel
+        if (playerObject.GetComponent<PlayerInput>().playerAtBonfire == true && Input.GetKeyDown(KeyCode.Space))
         {
             fuelCurrent = fuelMax;
             greenFuel = flameColourMax.g * 100f;

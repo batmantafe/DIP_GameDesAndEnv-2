@@ -11,6 +11,8 @@ public class PlayerInput : MonoBehaviour
 
     public Text playerMessage;
 
+    public bool playerAtBonfire;
+
     // Use this for initialization
     void Start()
     {
@@ -41,6 +43,8 @@ public class PlayerInput : MonoBehaviour
         Cursor.visible = false;
 
         playerHasFirstKey = false;
+
+        playerAtBonfire = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -56,12 +60,26 @@ public class PlayerInput : MonoBehaviour
         {
             playerMessage.text = "You can Press SPACE to use Buttons and Levers.";
         }
+
+        if (other.gameObject.CompareTag("Bonfire"))
+        {
+            playerAtBonfire = true;
+
+            playerMessage.text = "You can Press SPACE to refuel your Torch.";
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("First Button"))
         {
+            playerMessage.text = "";
+        }
+
+        if (other.gameObject.CompareTag("Bonfire"))
+        {
+            playerAtBonfire = false;
+
             playerMessage.text = "";
         }
     }
