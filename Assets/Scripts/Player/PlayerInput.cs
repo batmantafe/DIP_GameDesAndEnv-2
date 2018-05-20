@@ -36,6 +36,12 @@ public class PlayerInput : MonoBehaviour
         {
             SceneManager.LoadScene("Game");
         }
+
+        // For Debugging/Playtesting Only
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            transform.position = new Vector3(-35f, -35f, -18f);
+        }
     }
 
     void StartConditions()
