@@ -58,11 +58,11 @@ public class Flame : MonoBehaviour
         //Debug.Log("Flame: " + rend.material.color + " & FuelCurrent: " + fuelCurrent);
 
         // Debugging Fuel
-        /*if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             fuelCurrent = fuelMax;
             greenFuel = flameColourMax.g * 100f;
-        }*/
+        }
 
         if (fuelCurrent > fuelMax)
         {
