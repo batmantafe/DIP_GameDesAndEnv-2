@@ -32,6 +32,8 @@ public class Menu : MonoBehaviour
 
     public void Exit()
     {
+        PlayerPrefs.SetInt("Player Win/Lose", 0);
+
         Application.Quit();
     }
 
