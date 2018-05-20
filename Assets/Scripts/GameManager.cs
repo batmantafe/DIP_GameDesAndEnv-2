@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public PlayerInput playerInput;
     public GameObject bonfireTrigger, bonfireFire;
 
-    public GameObject statue1, statue2;
+    public GameObject statue1, statue2, statue3;
 
     // Use this for initialization
     void Start()
@@ -71,6 +71,12 @@ public class GameManager : MonoBehaviour
 
             statue1.SetActive(false);
             statue2.SetActive(true);
+        }
+
+        if (playerInput.playerOnLastElevator == true)
+        {
+            statue2.SetActive(false);
+            statue3.SetActive(true);
         }
     }
 }

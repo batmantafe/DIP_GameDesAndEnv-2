@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
 
     public GameManager gameManager;
 
+    public bool playerOnLastElevator;
+
     // Use this for initialization
     void Start()
     {
@@ -62,6 +64,8 @@ public class PlayerInput : MonoBehaviour
         playerHasLastKey = false;
 
         playerAtBonfire = false;
+
+        playerOnLastElevator = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -104,6 +108,11 @@ public class PlayerInput : MonoBehaviour
             gameManager.playerStatus = 1;
 
             gameManager.playerWon = true;
+        }
+
+        if (other.gameObject.CompareTag("Last Trigger"))
+        {
+            playerOnLastElevator = true;
         }
     }
 
