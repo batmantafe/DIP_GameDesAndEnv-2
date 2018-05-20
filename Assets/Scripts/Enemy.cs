@@ -8,41 +8,68 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject player, flame;
 
     private NavMeshAgent nav;
 
-    public bool getPlayerBool;
+    public bool activateEnemy, chasePlayer;
+
+    public SphereCollider enemySphere;
 
     void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
+        enemySphere = GetComponent<SphereCollider>();
 
-        getPlayerBool = false;
+        activateEnemy = false;
+        chasePlayer = false;
     }
 
     // Use this for initialization
     void Start()
     {
-
+        enemySphere.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        getPlayer();
+        GetPlayer();
 
-        if (getPlayerBool == true)
+        if (activateEnemy == true)
         {
             nav.SetDestination(player.transform.position);
         }
     }
 
-    void getPlayer()
+    void GetPlayer()
     {
         if (player.GetComponent<PlayerInput>().playerHasLastKey == true)
         {
-            getPlayerBool = true;
+            activateEnemy = true;
+
+            enemySphere.enabled = true;
+        }
+
+        if (enemySphere.enabled)
+        {
+            enemySphere.radius = Mathf.Ceil(flame.GetComponent<Flame>().flameLight.range);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Player" && enemySphere.radius != 0f)
+        {
+            nav.Stop();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Player" && enemySphere.radius != 0f)
+        {
+            nav.Resume();
         }
     }
 }
