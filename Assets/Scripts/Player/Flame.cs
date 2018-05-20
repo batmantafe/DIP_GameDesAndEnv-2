@@ -33,7 +33,7 @@ public class Flame : MonoBehaviour
 
         fuelMax = 100f;
         fuelCurrent = fuelMax;
-        burnRate = 60f;
+        burnRate = 150f;
 
         flameStartRange = flameLight.range;
         flameStartIntensity = flameLight.intensity;
