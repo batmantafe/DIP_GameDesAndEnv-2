@@ -40,16 +40,18 @@ public class PlayerInput : MonoBehaviour
             gameManager.playerLost = true;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.F1))
-        {
-            SceneManager.LoadScene("Game");
-        }*/
-
         // For Debugging/Playtesting Only
-        /*if (Input.GetKeyDown(KeyCode.F2))
+        /********************************/
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            transform.position = new Vector3(-35f, -35f, -18f);
-        }*/
+            Time.timeScale = 4f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Time.timeScale = 1f;
+        }
+        /*******************************/
     }
 
     void StartConditions()

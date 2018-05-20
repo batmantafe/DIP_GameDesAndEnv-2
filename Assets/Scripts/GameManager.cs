@@ -29,6 +29,13 @@ public class GameManager : MonoBehaviour
         CheckPlayer();
 
         //Debug.Log(playerStatus);
+
+        if (torchSample.fuelCurrent <= 0f)
+        {
+            playerStatus = 5;
+
+            playerLost = true;
+        }
     }
 
     void CheckPlayer()
@@ -50,7 +57,5 @@ public class GameManager : MonoBehaviour
 
             SceneManager.LoadScene("Menu");
         }
-
-        
     }
 }

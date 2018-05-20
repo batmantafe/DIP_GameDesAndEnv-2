@@ -11,7 +11,9 @@ public class Block : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        blockSpeed = .0067f;
+        //blockSpeed = .0067f;
+
+        blockSpeed = .0134f;
     }
 
     // Update is called once per frame
