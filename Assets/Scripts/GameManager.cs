@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public PlayerInput playerInput;
     public GameObject bonfireTrigger, bonfireFire;
 
+    public GameObject statue1, statue2;
+
     // Use this for initialization
     void Start()
     {
@@ -66,6 +68,9 @@ public class GameManager : MonoBehaviour
             bonfireTrigger.SetActive(false);
 
             bonfireFire.SetActive(false);
+
+            statue1.SetActive(false);
+            statue2.SetActive(true);
         }
     }
 }
