@@ -13,6 +13,8 @@ public class Lever : MonoBehaviour {
     public bool doorDone;
     public bool playerAtLever;
 
+    public GameObject stoneSound;
+
     void Start()
     {
         doorOn = false;
@@ -29,6 +31,8 @@ public class Lever : MonoBehaviour {
             door.transform.position = Vector3.MoveTowards(door.transform.position, doorTarget.position, doorSpeed * Time.deltaTime);
 
             transform.Rotate(new Vector3 (0, -30, 0) * (doorSpeed * Time.deltaTime));
+
+            stoneSound.SetActive(true);
         }
 
         if (door.transform.position == doorTarget.position)
@@ -40,6 +44,11 @@ public class Lever : MonoBehaviour {
         if (playerAtLever == true && Input.GetKeyDown(KeyCode.Space))
         {
             doorOn = true;
+        }
+
+        if (doorOn == false)
+        {
+            stoneSound.SetActive(false);
         }
 
         //Debug.Log(door.transform.position);
