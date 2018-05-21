@@ -21,9 +21,9 @@ public class CameraMove : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, camTarget.position, camSpeed * Time.deltaTime);
 
-        if (transform.position == camTarget.position)
+        /*if (transform.position == camTarget.position)
         {
             blockLight.SetActive(true);
-        }
+        }*/
     }
 }
