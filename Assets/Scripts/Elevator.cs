@@ -15,6 +15,8 @@ public class Elevator : MonoBehaviour
     public bool elevatorDone;
     public bool elevatorReady;
 
+    public GameObject stoneSound;
+
     void Start()
     {
         elevatorOn = false;
@@ -29,6 +31,8 @@ public class Elevator : MonoBehaviour
         if (elevatorOn == true)
         {
             platform.transform.position = Vector3.MoveTowards(platform.transform.position, platformTarget.position, elevatorSpeed * Time.deltaTime);
+
+            stoneSound.SetActive(true);
         }
 
         if (platform.transform.position == platformTarget.position)
@@ -40,6 +44,11 @@ public class Elevator : MonoBehaviour
         if (elevatorReady == true && Input.GetKeyDown(KeyCode.Space))
         {
             elevatorOn = true;
+        }
+
+        if (elevatorOn == false)
+        {
+            stoneSound.SetActive(false);
         }
     }
 
