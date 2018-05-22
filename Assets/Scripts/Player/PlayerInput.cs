@@ -95,7 +95,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (other.gameObject.CompareTag("First Key") && playerCanTakeFirstKey == false)
         {
-            playerMessage.text = "A Key without a Keyhole... Press SPACE to take this Key.";
+            playerMessage.text = "A Key without a Keyhole. Press SPACE to take this Key.";
 
             playerCanTakeFirstKey = true;
         }
