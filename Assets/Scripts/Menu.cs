@@ -52,33 +52,33 @@ public class Menu : MonoBehaviour
         switch (getPlayerStatus)
         { 
         case 0:
-                aboveText.text = "";
-                belowText.text = "";
+                aboveText.text = "Immortality lies at the feet of the Silent Colossus in";
+                belowText.text = "Get there before the Lights burn out.";
                 break;
 
         case 1:
-                aboveText.text = "You are the new Lich of";
-                belowText.text = "";
+                aboveText.text = "You have become the new Silent Colossus of";
+                belowText.text = "You will scream forever... silently.";
                 break;
 
         case 2:
-                aboveText.text = "You ran screaming from";
-                belowText.text = "";
+                aboveText.text = "Yes,";
+                belowText.text = "is very scary.";
                 break;
 
         case 3:
-                aboveText.text = "You'd rather jump than face";
-                belowText.text = "";
+                aboveText.text = "In your haste you forgot gravity.";
+                belowText.text = "laughs at your stupidity.";
                 break;
 
         case 4:
                 aboveText.text = "";
-                belowText.text = "took your Soul";
+                belowText.text = "feeds on your Soul.";
                 break;
 
         case 5:
-                aboveText.text = "The Darkness of";
-                belowText.text = "swallowed you whole";
+                aboveText.text = "";
+                belowText.text = "has swallowed you whole.";
                 break;
         }
     }
