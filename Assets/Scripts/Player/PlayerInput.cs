@@ -17,6 +17,10 @@ public class PlayerInput : MonoBehaviour
 
     public bool playerOnLastElevator;
 
+    public bool playerCanTakeFirstKey, playerCanTakeLastKey;
+
+    public GameObject firstKey, lastKey;
+
     // Use this for initialization
     void Start()
     {
@@ -27,6 +31,25 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         Shortcuts();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (playerCanTakeFirstKey == true)
+            {
+                firstKey.gameObject.SetActive(false);
+
+                playerHasFirstKey = true;
+
+                playerMessage.text = "";
+            }
+
+            if (playerCanTakeLastKey == true)
+            {
+                lastKey.gameObject.SetActive(false);
+
+                playerHasLastKey = true;
+            }
+        }
     }
 
     void Shortcuts()
@@ -46,7 +69,7 @@ public class PlayerInput : MonoBehaviour
         /********************************/
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            Time.timeScale = 4f;
+            Time.timeScale = 6f;
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
@@ -70,16 +93,21 @@ public class PlayerInput : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("First Key"))
+        if (other.gameObject.CompareTag("First Key") && playerCanTakeFirstKey == false)
         {
-            other.gameObject.SetActive(false);
+            playerMessage.text = "A Key without a Keyhole... Press SPACE to take this Key.";
 
-            playerHasFirstKey = true;
+            playerCanTakeFirstKey = true;
         }
 
-        if (other.gameObject.CompareTag("First Button"))
+        if (other.gameObject.CompareTag("First Button") && playerHasFirstKey == true)
         {
-            playerMessage.text = "You can Press SPACE to use Buttons and Levers.";
+            playerMessage.text = "You can Press SPACE to use Keyholes (if you have the right Keys) and Levers.";
+        }
+
+        if (other.gameObject.CompareTag("First Button") && playerHasFirstKey == false)
+        {
+            playerMessage.text = "A Keyhole without a Key...";
         }
 
         if (other.gameObject.CompareTag("Bonfire"))
@@ -91,9 +119,7 @@ public class PlayerInput : MonoBehaviour
 
         if (other.gameObject.CompareTag("Last Key"))
         {
-            other.gameObject.SetActive(false);
-
-            playerHasLastKey = true;
+            playerCanTakeLastKey = true;
         }
 
         if (other.gameObject.name == "Falling Floor")
@@ -128,6 +154,13 @@ public class PlayerInput : MonoBehaviour
             playerAtBonfire = false;
 
             playerMessage.text = "";
+        }
+
+        if (other.gameObject.CompareTag("First Key"))
+        {
+            playerMessage.text = "";
+
+            playerCanTakeFirstKey = false;
         }
     }
 }
