@@ -52,7 +52,7 @@ public class Menu : MonoBehaviour
         switch (getPlayerStatus)
         { 
         case 0:
-                aboveText.text = "Immortality lies at the feet of the Silent Colossus in";
+                aboveText.text = "Legend says Immortality lies at the feet of the Silent Colossus in";
                 belowText.text = "Get there before the Lights burn out.";
                 break;
 
