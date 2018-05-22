@@ -21,6 +21,8 @@ public class PlayerInput : MonoBehaviour
 
     public GameObject firstKey, lastKey;
 
+    public GameObject enemiesInWalls;
+
     // Use this for initialization
     void Start()
     {
@@ -48,6 +50,8 @@ public class PlayerInput : MonoBehaviour
                 lastKey.gameObject.SetActive(false);
 
                 playerHasLastKey = true;
+
+                enemiesInWalls.SetActive(true);
             }
         }
     }
