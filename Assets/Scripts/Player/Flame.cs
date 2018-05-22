@@ -15,6 +15,8 @@ public class Flame : MonoBehaviour
 
     public GameObject playerObject;
 
+    public int lightDifficulty;
+
     // Use this for initialization
     void Start()
     {
@@ -42,8 +44,34 @@ public class Flame : MonoBehaviour
         fuelCurrent = fuelMax;
         burnRate = 150f;
 
-        flameStartRange = flameLight.range;
-        flameStartIntensity = flameLight.intensity;
+        //flameStartRange = flameLight.range;
+        //flameStartIntensity = flameLight.intensity;
+
+        lightDifficulty = PlayerPrefs.GetInt("Difficulty");
+
+        switch (lightDifficulty)
+        {
+            case 1:
+
+                flameStartRange = flameLight.range * 2;
+                flameStartIntensity = flameLight.intensity * 2;
+
+                break;
+
+            case 2:
+
+                flameStartRange = flameLight.range;
+                flameStartIntensity = flameLight.intensity;
+
+                break;
+
+            case 3:
+
+                flameStartRange = flameLight.range / 2;
+                flameStartIntensity = flameLight.intensity / 2;
+
+                break;
+        }
 
         rend = GetComponent<Renderer>();
         flameColourMax = rend.material.color;

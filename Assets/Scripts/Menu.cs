@@ -11,6 +11,10 @@ public class Menu : MonoBehaviour
 
     public int getPlayerStatus;
 
+    public int lightLevel;
+
+    public GameObject menuManager;
+
     // Use this for initialization
     void Start()
     {
@@ -28,6 +32,10 @@ public class Menu : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene("Game");
+
+        PlayerPrefs.SetInt("LightRange", menuManager.GetComponent<MenuManager>().sliderRange);
+        PlayerPrefs.SetInt("LightIntensity", menuManager.GetComponent<MenuManager>().sliderIntensity);
+        PlayerPrefs.SetInt("Difficulty", menuManager.GetComponent<MenuManager>().lightSliderValue);
     }
 
     public void Exit()
@@ -69,8 +77,8 @@ public class Menu : MonoBehaviour
                 break;
 
         case 5:
-                aboveText.text = "Darkness swallowed you whole in";
-                belowText.text = "";
+                aboveText.text = "The Darkness of";
+                belowText.text = "swallowed you whole";
                 break;
         }
     }

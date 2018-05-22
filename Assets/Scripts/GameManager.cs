@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject statue1, statue2, statue3;
 
+    public int savedLightRange, savedLightIntensity;
+
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         playerWon = false;
         playerLost = false;
@@ -26,6 +28,10 @@ public class GameManager : MonoBehaviour
         playerStatus = 0;
 
         PlayerPrefs.SetInt("Player Win/Lose", playerStatus);
+
+        savedLightRange = PlayerPrefs.GetInt("LightRange");
+        savedLightIntensity = PlayerPrefs.GetInt("LightIntensity");
+
     }
 
     // Update is called once per frame

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 public class Torches : MonoBehaviour
 {
     public Light torchLight;
@@ -13,16 +15,39 @@ public class Torches : MonoBehaviour
     public Color torchColourMax, torchColour;
     public Renderer rend;
 
+    public GameObject manager;
+
     // Use this for initialization
     void Start()
     {
         StartConditions();
+
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            manager = GameObject.Find("Menu Manager");
+        }
+
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            manager = GameObject.Find("GameManager");
+
+            torchStartRange = manager.GetComponent<GameManager>().savedLightRange;
+            torchStartIntensity = manager.GetComponent<GameManager>().savedLightIntensity;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         BurnDown();
+
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            manager = GameObject.Find("Menu Manager");
+
+            torchStartRange = manager.GetComponent<MenuManager>().sliderRange;
+            torchStartIntensity = manager.GetComponent<MenuManager>().sliderIntensity;
+        }
     }
 
     void StartConditions()
@@ -54,15 +79,6 @@ public class Torches : MonoBehaviour
         torchColour.r = (fuelCurrent / fuelMax) * torchColourMax.r;
         torchColour.g = (greenFuel / fuelMax) * torchColourMax.g;
         rend.material.color = torchColour;
-
-        //Debug.Log("Flame: " + rend.material.color + " & FuelCurrent: " + fuelCurrent);
-
-        // Debugging Fuel
-        /*if (Input.GetKeyDown(KeyCode.E))
-        {
-            fuelCurrent = fuelMax;
-            greenFuel = torchColourMax.g * 100f;
-        }*/
 
         if (fuelCurrent > fuelMax)
         {
